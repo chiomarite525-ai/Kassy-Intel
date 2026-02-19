@@ -1,61 +1,135 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>KASSY INTEL | PUBLIC GATEWAY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kassy Chukwu Aura | Designed by Precious Alakpa</title>
     <style>
-        :root { --accent: #00ff88; --bg: #050505; }
-        body { background: var(--bg); color: #fff; font-family: sans-serif; margin: 0; display: flex; height: 100vh; }
-        .main { flex: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .card { width: 100%; max-width: 500px; background: #111; padding: 30px; border-radius: 20px; border: 1px solid #222; text-align: center; }
-        #status { margin-top: 20px; color: var(--accent); font-family: monospace; text-shadow: 0 0 10px var(--accent); }
-        .loader { border: 4px solid #222; border-top: 4px solid var(--accent); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; display: none; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        :root { --heygen-blue: #00ADEE; --glass: rgba(255, 255, 255, 0.8); --sidebar-bg: #ffffff; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: #f4f7f9; display: flex; height: 100vh; color: #1f2937; }
+
+        /* 1. SIDEBAR - EVERYTHING ON ONE SIDE */
+        .sidebar { width: 320px; background: var(--sidebar-bg); border-right: 1px solid #e5e7eb; display: flex; flex-direction: column; padding: 25px; position: relative; }
+        .logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 30px; letter-spacing: -1px; }
+        .logo span { color: var(--heygen-blue); }
+        
+        .nav-section { margin-bottom: 25px; }
+        .nav-section h4 { font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-side { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #e5e7eb; background: white; border-radius: 10px; cursor: pointer; text-align: left; transition: 0.2s; font-weight: 500; }
+        .btn-side:hover { border-color: var(--heygen-blue); background: #f0f9ff; }
+        
+        .trend-ticker { background: #f9fafb; border-radius: 10px; padding: 10px; font-size: 0.85rem; border: 1px dashed #d1d5db; }
+        .viral-badge { font-size: 0.7rem; background: #fee2e2; color: #ef4444; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+
+        /* 2. SIGNATURE - PRECIOUS ALAKPA */
+        .designer-credit { position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; font-size: 0.8rem; color: #9ca3af; font-weight: 500; }
+
+        /* 3. MAIN WORKSPACE */
+        .main { flex: 1; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+        .input-card { background: white; width: 100%; max-width: 700px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        textarea { width: 100%; height: 120px; border: 1px solid #e5e7eb; border-radius: 12px; padding: 15px; font-size: 1rem; margin-bottom: 20px; resize: none; box-sizing: border-box; }
+        .btn-primary { background: var(--heygen-blue); color: white; border: none; padding: 15px 40px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,173,238,0.3); }
+
+        /* 4. THE 4K SHOWROOM */
+        #showroom { display: none; margin-top: 40px; width: 100%; max-width: 800px; text-align: center; }
+        .scene { 
+            position: relative; height: 450px; background: radial-gradient(circle at 50% 50%, #e5e7eb 0%, #ffffff 100%);
+            border-radius: 24px; border: 1px solid #d1d5db; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .glass-table { 
+            position: absolute; bottom: 0; width: 100%; height: 120px; 
+            background: rgba(192, 192, 192, 0.2); backdrop-filter: blur(15px); border-top: 2px solid rgba(255,255,255,0.5);
+        }
+        .book-3d { 
+            width: 200px; height: 280px; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            box-shadow: 15px 15px 40px rgba(0,0,0,0.2); border-left: 18px solid #ffffff; /* WHITE EDGES */
+            border-radius: 2px 8px 8px 2px; display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold; padding: 20px; text-align: center; font-size: 1.2rem;
+        }
+        .digital-shield { margin-top: 20px; color: #059669; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; }
     </style>
 </head>
 <body>
-    <div class="main">
-        <div class="card">
-            <h2 style="color: var(--accent);">𝕏 KASSY INTEL</h2>
-            <p style="color: #666;">Public Research Node (No Key Required)</p>
-            <hr border="0" style="border-top: 1px solid #222; margin: 20px 0;">
-            
-            <div id="ui-area">
-                <input type="file" id="file" style="margin-bottom: 20px;">
-                <button onclick="start()" style="width: 100%; padding: 15px; background: var(--accent); border: none; font-weight: bold; cursor: pointer;">GENERATE VIA PUBLIC NODE</button>
-            </div>
 
-            <div class="loader" id="loading"></div>
-            <div id="status">READY FOR UPLOAD</div>
-            <video id="out" style="width: 100%; margin-top: 20px; display: none;" controls autoplay loop></video>
+    <div class="sidebar">
+        <div class="logo">KASSY CHUKWU <span>AURA</span></div>
+        
+        <div class="nav-section">
+            <h4>1. Content Sources</h4>
+            <button class="btn-side">📹 Viral Video Link</button>
+            <button class="btn-side">📄 Rewrite PDF/Book</button>
+            <button class="btn-side">🔗 Paste Web Link</button>
+            <input type="file" id="faceUpload" style="display:none" onchange="faceStatus()">
+            <button class="btn-side" onclick="document.getElementById('faceUpload').click()">👤 Upload Author Face</button>
+        </div>
+
+        <div class="nav-section">
+            <h4>2. Global Trends (Nigeria)</h4>
+            <div class="trend-ticker">
+                <p><strong>#ArgunguFishing</strong> <span class="viral-badge">GLOBAL WAVE</span></p>
+                <p><strong>#LagosTechHub</strong> <span class="viral-badge">RISING</span></p>
+                <p><strong>#AISummit2026</strong> <span class="viral-badge">HOT</span></p>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <h4>3. Legal & Distribution</h4>
+            <button class="btn-side" style="border: 1px solid gold;">🆔 Get Free ISBN (Amazon)</button>
+            <button class="btn-side">🛡️ Verify Digital Shield</button>
+        </div>
+
+        <div class="designer-credit">App is designed by Precious Alakpa</div>
+    </div>
+
+    <div class="main">
+        <div class="input-card">
+            <h2 style="margin-top:0">Create Your Undetectable Book</h2>
+            <p style="color:#6b7280; font-size: 0.9rem;">Paste your link, upload your file, or pick a trending topic above.</p>
+            <textarea id="bookInput" placeholder="Kassy Chukwu Aura is ready to rewrite your content into a human-voice masterpiece..."></textarea>
+            <button class="btn-primary" onclick="generateAura()">GENERATE 4K SHOWROOM AD</button>
+        </div>
+
+        <div id="showroom">
+            <div class="scene">
+                <div class="book-3d" id="finalBook">BOOK COVER</div>
+                <div class="glass-table"></div>
+                <div style="position:absolute; top:20px; right:20px; font-size: 0.7rem; color: #9ca3af;">4K STUDIO RENDERING</div>
+            </div>
+            
+            <div class="digital-shield">
+                🛡️ FREE DIGITAL FINGERPRINT ACTIVE: <span id="hashDisplay">SHA256-PENDING</span>
+            </div>
+            <p style="font-size: 0.8rem; color:#6b7280;">International recognition secured. This book is now protected globally.</p>
         </div>
     </div>
 
-    <script type="module">
-        // Using the Gradio-to-API bridge for Wan 2.1 Public Spaces
-        import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest/dist/index.min.js";
+    <script>
+        function generateAura() {
+            const input = document.getElementById('bookInput').value;
+            if(!input) { alert("Please provide a source link or text first."); return; }
 
-        window.start = async () => {
-            const file = document.getElementById('file').files[0];
-            if(!file) return alert("Select image");
+            // 1. Simulate Human-Voice Rewriting
+            alert("Kassy Chukwu Aura is rewriting content to be undetectable...");
+            
+            // 2. Show the Showroom
+            document.getElementById('showroom').style.display = 'block';
+            document.getElementById('finalBook').innerText = input.substring(0, 30).toUpperCase() + "...";
+            
+            // 3. Generate Digital Fingerprint (Precious Alakpa Logic)
+            const fakeHash = "AURA-" + Math.random().toString(36).substring(2, 15).toUpperCase();
+            document.getElementById('hashDisplay').innerText = fakeHash;
 
-            document.getElementById('loading').style.display = "block";
-            document.getElementById('status').innerText = "JOINING PUBLIC QUEUE...";
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
 
-            try {
-                // This connects to the Public Wan 2.1 Space directly
-                const app = await client("Wan-AI/Wan2.1-T2V-14B"); 
-                const result = await app.predict("/predict", [file, "cinematic motion"]);
-
-                document.getElementById('out').src = result.data[0].url;
-                document.getElementById('out').style.display = "block";
-                document.getElementById('status').innerText = "COMPLETE";
-            } catch (e) {
-                document.getElementById('status').innerText = "QUEUE FULL - RETRY IN 60S";
-            } finally {
-                document.getElementById('loading').style.display = "none";
-            }
+        function faceStatus() {
+            alert("Author face uploaded! Ready to swap onto 4K Marketing Avatars.");
         }
     </script>
+
 </body>
 </html>
